@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">parcial-1-am-acn4bv-queimalinos</string>
+    <string name="app_name">MiAppEntrenamiento</string>
+    <string name="texto_bienvenida">¡Bienvenido a la App de Entrenamiento!</string>
+    <string name="boton_prueba">Presioname</string>
+    <string name="boton_dinamico">Botón dinámico</string>
 </resources>
