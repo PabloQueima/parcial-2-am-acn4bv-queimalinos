@@ -3,7 +3,7 @@
     <string name="app_name">App de Entrenamiento</string>
 
     <!-- Textos generales -->
-    <string name="texto_bienvenida">Selecciona una sesión de entrenamiento</string>
+    <string name="texto_bienvenida">Plataforma de Entrenamiento</string>
     <string name="boton_ver_ejercicios">Ver ejercicios</string>
     <string name="boton_ocultar_ejercicios">Ocultar ejercicios</string>
 
