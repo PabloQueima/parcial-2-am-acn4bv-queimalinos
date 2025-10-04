@@ -1,5 +1,13 @@
 <resources>
-    <color name="colorPrimary">#05A3CB</color>
-    <color name="colorPrimaryDark">#15114D</color>
-    <color name="colorAccent">#BB81B6</color>
+    <!-- Paleta principal -->
+    <color name="color_primary">#05A3CB</color>
+    <color name="color_secondary">#BB81B6</color>
+    <color name="color_dark">#15114D</color>
+    <color name="color_mid_dark">#0C3264</color>
+    <color name="color_light">#FFFFFF</color>
+    <color name="color_background">#F4F7FB</color>
+
+    <!-- Extras para feedback -->
+    <color name="color_success">#4CAF50</color>
+    <color name="color_warning">#FF9800</color>
 </resources>
