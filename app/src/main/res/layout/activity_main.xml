@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F7FB"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -21,17 +22,18 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/textoBienvenida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecciona una sesión"
+                android:text="Selecciona una sesión de entrenamiento"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#15114D"
                 android:layout_marginBottom="16dp"/>
-
-            <!-- Aquí las sesiones -->
 
         </LinearLayout>
     </ScrollView>
