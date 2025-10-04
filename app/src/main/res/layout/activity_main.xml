@@ -7,32 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- LinearLayout vertical dentro de ConstraintLayout -->
-    <LinearLayout
-        android:id="@+id/contenedorPrincipal"
-        android:orientation="vertical"
+    <!-- ScrollView para permitir scroll si hay muchos elementos -->
+    <ScrollView
+        android:id="@+id/scrollPrincipal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Texto de bienvenida -->
-        <TextView
-            android:id="@+id/textoBienvenida"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/contenedorPrincipal"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¡Bienvenido a la App de Entrenamiento!"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp"/>
+            android:padding="16dp">
 
-        <!-- Botón de prueba -->
-        <Button
-            android:id="@+id/botonPrueba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Presioname"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textoBienvenida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Bienvenido a la App de Entrenamiento!"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"/>
 
+            <Button
+                android:id="@+id/botonPrueba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Presioname"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
