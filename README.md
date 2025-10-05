@@ -25,29 +25,6 @@ Marcar los ejercicios como completados, con cambios visuales y contador de progr
 
 ************************************************************************************************************************************************************
 
-Estructura del proyecto
-
-La aplicación está organizada según la convención estándar de Android Studio:
-app/
- ├── java/com/example/parcial_1_am_acn4bv_queimalinos/
- │     ├── MainActivity.java
- │     ├── models/
- │     │     ├── Ejercicio.java
- │     │     └── Sesion.java
- │
- └── res/
-       ├── layout/
-       │     └── activity_main.xml
-       ├── values/
-       │     ├── strings.xml
-       │     ├── colors.xml
-       │     └── dimens.xml
-       └── drawable/
-             ├── logo.png
-             └── fondo.png
-
-************************************************************************************************************************************************************
-
 Descripción funcional
 
 La aplicación inicia mostrando el logo de la plataforma sobre un fondo personalizado.
