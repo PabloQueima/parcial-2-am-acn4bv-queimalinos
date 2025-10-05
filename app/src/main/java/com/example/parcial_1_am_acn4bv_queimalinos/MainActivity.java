@@ -136,13 +136,6 @@ public class MainActivity extends AppCompatActivity {
         params.setMargins(0, 8, 0, 8);
         tarjeta.setLayoutParams(params);
 
-        ImageView imagen = new ImageView(this);
-        imagen.setImageResource(e.getImagenResId());
-        LinearLayout.LayoutParams paramsImg = new LinearLayout.LayoutParams(150, 150);
-        paramsImg.setMargins(0, 0, 16, 0);
-        imagen.setLayoutParams(paramsImg);
-        tarjeta.addView(imagen);
-
         LinearLayout textoContainer = new LinearLayout(this);
         textoContainer.setOrientation(LinearLayout.VERTICAL);
         textoContainer.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
