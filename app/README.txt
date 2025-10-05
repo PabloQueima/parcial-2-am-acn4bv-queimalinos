@@ -4,6 +4,7 @@ Parcial 1 – Aplicaciones Móviles
 Alumno: Pablo Queimaliños
 Comisión: ACN4BV
 Materia: Aplicaciones Móviles
+Escuela Da Vinci
 
 ************************************************************************************************************************************************************
 
