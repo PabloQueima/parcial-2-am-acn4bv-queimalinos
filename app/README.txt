@@ -1,7 +1,10 @@
+PLATAFORMA DE ENTRENAMIENTO
+
 Parcial 1 – Aplicaciones Móviles
-Alumno: Queimalinos
+Alumno: Pablo Queimaliños
 Comisión: ACN4BV
 Materia: Aplicaciones Móviles
+
 ************************************************************************************************************************************************************
 
 Descripción general
@@ -11,6 +14,7 @@ La aplicación forma parte de una plataforma de entrenamiento, que más adelante
 El objetivo de esta etapa fue implementar una pantalla funcional del usuario cliente, respetando la estructura, diseño y comportamiento dinámico requeridos.
 
 ************************************************************************************************************************************************************
+
 Objetivo de la entrega
 
 El propósito de esta instancia fue construir una pantalla principal que permita al usuario:
@@ -19,6 +23,7 @@ Desplegar los ejercicios de cada sesión.
 Marcar los ejercicios como completados, con cambios visuales y contador de progreso.
 
 ************************************************************************************************************************************************************
+
 Estructura del proyecto
 
 La aplicación está organizada según la convención estándar de Android Studio:
@@ -41,6 +46,7 @@ app/
              └── fondo.png
 
 ************************************************************************************************************************************************************
+
 Descripción funcional
 
 La aplicación inicia mostrando el logo de la plataforma sobre un fondo personalizado.
@@ -54,6 +60,7 @@ Al hacerlo, se modifica el color de fondo y se tacha el texto, brindando feedbac
 Además, se actualiza automáticamente el contador de progreso de la sesión, mostrando la cantidad de ejercicios completados sobre el total.
 
 ************************************************************************************************************************************************************
+
 Diseño y recursos
 
 Se respetó la paleta de colores definida previamente para la plataforma:
@@ -66,6 +73,7 @@ Blanco: #FFFFFF
 Todos los textos, colores y dimensiones se manejan desde los archivos de recursos (strings.xml, colors.xml, dimens.xml), manteniendo una buena organización y facilitando futuras modificaciones.
 
 ************************************************************************************************************************************************************
+
 Alcance de esta entrega
 
 Para esta primera instancia, la aplicación no se conecta aún con la versión web ni utiliza datos externos.
