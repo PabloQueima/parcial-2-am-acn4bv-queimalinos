@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
             ejerciciosPorSesion.put(sesion.getTitulo(), sesion.getEjercicios());
             contenedorSesiones.addView(crearVistaSesion(sesion));
         }
+        Button logoutBtn = findViewById(R.id.logoutBtn);
+            logoutBtn.setOnClickListener(v -> {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            });
     }
 
     // -------------------------------------------------

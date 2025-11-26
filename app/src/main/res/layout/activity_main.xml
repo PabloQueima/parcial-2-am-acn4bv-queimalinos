@@ -48,4 +48,11 @@
             android:orientation="vertical" />
 
     </LinearLayout>
+    <Button
+    android:id="@+id/logoutBtn"
+    android:text="Cerrar sesión"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"/>
+
 </ScrollView>
