@@ -1,5 +1,6 @@
 package com.example.parcial_1_am_acn4bv_queimalinos;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.example.parcial_1_am_acn4bv_queimalinos.models.Ejercicio;
 import com.example.parcial_1_am_acn4bv_queimalinos.models.Sesion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,31 +25,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Protección de sesión
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
+        // Bienvenida
+        String email = getIntent().getStringExtra("usuarioEmail");
+        TextView bienvenida = findViewById(R.id.txtBienvenida);
+        if (email != null) {
+            bienvenida.setText("Bienvenido " + email);
+        }
+
+        // Logout
+        Button logoutBtn = findViewById(R.id.logoutBtn);
+        logoutBtn.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
+
         LinearLayout contenedorSesiones = findViewById(R.id.contenedorSesiones);
         List<Sesion> sesiones = generarSesionesMock();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user == null) {
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
-                return;
-            }
 
         for (Sesion sesion : sesiones) {
             ejerciciosPorSesion.put(sesion.getTitulo(), sesion.getEjercicios());
             contenedorSesiones.addView(crearVistaSesion(sesion));
         }
-        Button logoutBtn = findViewById(R.id.logoutBtn);
-            logoutBtn.setOnClickListener(v -> {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
-            });
     }
 
-    // -------------------------------------------------
-    // Datos mock
-    // -------------------------------------------------
     private List<Sesion> generarSesionesMock() {
         List<Sesion> sesiones = new ArrayList<>();
 
@@ -75,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
         return sesiones;
     }
 
-    // -------------------------------------------------
-    // Crear vista de sesión
-    // -------------------------------------------------
     private View crearVistaSesion(Sesion sesion) {
         LinearLayout sesionLayout = new LinearLayout(this);
         sesionLayout.setOrientation(LinearLayout.VERTICAL);
@@ -98,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         titulo.setTextColor(ContextCompat.getColor(this, R.color.color_mid_dark));
         sesionLayout.addView(titulo);
 
-        // 🔹 Progreso dinámico
         TextView progreso = new TextView(this);
         progreso.setText("0 de " + sesion.getEjercicios().size() + " ejercicios completados");
         progreso.setTextColor(ContextCompat.getColor(this, R.color.color_secondary));
@@ -106,14 +111,12 @@ public class MainActivity extends AppCompatActivity {
         sesionLayout.addView(progreso);
         progresosPorSesion.put(sesion.getTitulo(), progreso);
 
-        // 🔹 Botón desplegable
         Button boton = new Button(this);
         boton.setText(getString(R.string.boton_ver_ejercicios));
         boton.setBackgroundColor(ContextCompat.getColor(this, R.color.color_primary));
         boton.setTextColor(ContextCompat.getColor(this, R.color.color_light));
         sesionLayout.addView(boton);
 
-        // 🔹 Contenedor ejercicios
         LinearLayout lista = new LinearLayout(this);
         lista.setOrientation(LinearLayout.VERTICAL);
         lista.setVisibility(View.GONE);
@@ -128,15 +131,13 @@ public class MainActivity extends AppCompatActivity {
         boton.setOnClickListener(v -> {
             boolean visible = lista.getVisibility() == View.VISIBLE;
             lista.setVisibility(visible ? View.GONE : View.VISIBLE);
-            boton.setText(visible ? getString(R.string.boton_ver_ejercicios) : getString(R.string.boton_ocultar_ejercicios));
+            boton.setText(visible ? getString(R.string.boton_ver_ejercicios)
+                    : getString(R.string.boton_ocultar_ejercicios));
         });
 
         return sesionLayout;
     }
 
-    // -------------------------------------------------
-    // Crear vista de ejercicio con CheckBox
-    // -------------------------------------------------
     private View crearVistaEjercicio(String sesionTitulo, Ejercicio e) {
         LinearLayout tarjeta = new LinearLayout(this);
         tarjeta.setOrientation(LinearLayout.HORIZONTAL);
@@ -184,9 +185,6 @@ public class MainActivity extends AppCompatActivity {
         return tarjeta;
     }
 
-    // -------------------------------------------------
-    // Cambiar estilo visual del ejercicio
-    // -------------------------------------------------
     private void actualizarEstiloEjercicio(View tarjeta, TextView nombre, String ejercicio) {
         boolean done = ejerciciosCompletados.contains(ejercicio);
         if (done) {
@@ -198,9 +196,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // -------------------------------------------------
-    // Actualizar progreso dinámico por sesión
-    // -------------------------------------------------
     private void actualizarProgresoSesion(String sesionTitulo) {
         TextView progreso = progresosPorSesion.get(sesionTitulo);
         List<Ejercicio> lista = ejerciciosPorSesion.get(sesionTitulo);
@@ -209,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         long completados = lista.stream().filter(e -> ejerciciosCompletados.contains(e.getNombre())).count();
         long total = lista.size();
 
-        progreso.setText(completados + " de " + total + " ejercicios completados" + (completados == total ? " ✅" : ""));
+        progreso.setText(completados + " de " + total + " ejercicios completados" + (completados == total ? " ✓" : ""));
         progreso.setTextColor(ContextCompat.getColor(this,
                 completados == total ? R.color.color_success : R.color.color_secondary));
     }
