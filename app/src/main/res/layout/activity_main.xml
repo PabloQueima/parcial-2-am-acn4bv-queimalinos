@@ -1,58 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <!-- 🔹 Logo superior -->
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:src="@drawable/logo"
-            android:contentDescription="@string/app_name"
-            android:layout_marginBottom="16dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
-
-        <!-- 🔹 Texto de bienvenida -->
+        <!-- Bienvenida -->
         <TextView
-            android:id="@+id/textoBienvenida"
+            android:id="@+id/txtBienvenida"
+            android:text="Bienvenido"
+            android:textSize="20sp"
+            android:textColor="@color/color_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/texto_bienvenida"
-            android:textSize="18sp"
-            android:textColor="@color/color_dark"
-            android:layout_marginBottom="24dp"
-            android:background="#80FFFFFF"
-            android:padding="8dp"
-            android:textAlignment="center"
-            android:elevation="2dp" />
+            android:layout_marginBottom="16dp" />
 
-        <!-- 🔹 Contenedor dinámico de sesiones -->
+        <!-- Botón Logout -->
+        <Button
+            android:id="@+id/logoutBtn"
+            android:text="Cerrar sesión"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:textColor="@color/color_light"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Contenedor dinámico de sesiones -->
         <LinearLayout
             android:id="@+id/contenedorSesiones"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <Button
-    android:id="@+id/logoutBtn"
-    android:text="Cerrar sesión"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"/>
 
 </ScrollView>
