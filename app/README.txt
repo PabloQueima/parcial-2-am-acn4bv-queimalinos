@@ -1,6 +1,6 @@
 PLATAFORMA DE ENTRENAMIENTO
 
-Parcial 1 – Aplicaciones Móviles
+Parcial 2 – Aplicaciones Móviles
 Alumno: Pablo Queimaliños
 Comisión: ACN4BV
 Materia: Aplicaciones Móviles
