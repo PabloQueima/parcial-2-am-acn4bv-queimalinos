@@ -6,8 +6,7 @@
     <color name="color_mid_dark">#0C3264</color>
     <color name="color_light">#FFFFFF</color>
     <color name="color_background">#F4F7FB</color>
-
-    <!-- Extras para feedback -->
+    <color name="color_accent">#D64040</color>
     <color name="color_success">#4CAF50</color>
     <color name="color_warning">#FF9800</color>
 </resources>

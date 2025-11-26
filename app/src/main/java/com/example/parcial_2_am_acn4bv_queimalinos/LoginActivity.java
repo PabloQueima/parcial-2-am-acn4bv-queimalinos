@@ -1,9 +1,10 @@
-package com.example.parcial_1_am_acn4bv_queimalinos;
+package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {

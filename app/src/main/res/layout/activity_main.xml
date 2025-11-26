@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
+    android:fillViewport="true"
     android:padding="16dp">
 
     <LinearLayout
@@ -20,22 +21,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp" />
 
-        <!-- Botón Logout -->
-        <Button
-            android:id="@+id/logoutBtn"
-            android:text="Cerrar sesión"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/color_primary"
-            android:textColor="@color/color_light"
-            android:layout_marginBottom="24dp" />
-
         <!-- Contenedor dinámico de sesiones -->
         <LinearLayout
             android:id="@+id/contenedorSesiones"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Botón Logout al fondo -->
+        <Button
+            android:id="@+id/logoutBtn"
+            android:text="Cerrar sesión"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_accent"
+        android:textColor="@color/color_light"
+        android:padding="12dp"
+        android:layout_marginTop="12dp" />
 
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.parcial_1_am_acn4bv_queimalinos;
+package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import org.junit.Test;
 

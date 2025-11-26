@@ -1,4 +1,4 @@
-package com.example.parcial_1_am_acn4bv_queimalinos;
+package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import com.example.parcial_1_am_acn4bv_queimalinos.models.Ejercicio;
-import com.example.parcial_1_am_acn4bv_queimalinos.models.Sesion;
+import com.example.parcial_2_am_acn4bv_queimalinos.models.Ejercicio;
+import com.example.parcial_2_am_acn4bv_queimalinos.models.Sesion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
