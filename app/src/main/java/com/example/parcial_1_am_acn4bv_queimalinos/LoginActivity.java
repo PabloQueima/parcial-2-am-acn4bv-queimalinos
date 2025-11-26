@@ -37,7 +37,9 @@ public class LoginActivity extends AppCompatActivity {
 
         auth.signInWithEmailAndPassword(email, pass)
                 .addOnSuccessListener(r -> {
-                    startActivity(new Intent(this, MainActivity.class));
+                    Intent i = new Intent(this, MainActivity.class);
+                    i.putExtra("usuarioEmail", email);
+                    startActivity(i);
                     finish();
                 })
                 .addOnFailureListener(e -> {

@@ -32,7 +32,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener(r -> {
-                    startActivity(new Intent(this, MainActivity.class));
+                    Intent i = new Intent(this, MainActivity.class);
+                    i.putExtra("usuarioEmail", email);
+                    startActivity(i);
                     finish();
                 })
                 .addOnFailureListener(e ->
