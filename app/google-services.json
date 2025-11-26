@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "678781356844",
+    "project_id": "plataformas-de-entrenamiento",
+    "storage_bucket": "plataformas-de-entrenamiento.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678781356844:android:f692dfa329ae3b20d2ba89",
+        "android_client_info": {
+          "package_name": "com.example.parcial_2_am_acn4bv_queimalinos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlBRnnKG50OnUfBTa7FFsyx1dUEN8kxt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
