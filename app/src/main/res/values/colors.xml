@@ -1,12 +1,13 @@
 <resources>
-    <!-- Paleta principal -->
-    <color name="color_primary">#05A3CB</color>
-    <color name="color_secondary">#BB81B6</color>
-    <color name="color_dark">#15114D</color>
-    <color name="color_mid_dark">#0C3264</color>
-    <color name="color_light">#FFFFFF</color>
     <color name="color_background">#F4F7FB</color>
     <color name="color_accent">#D64040</color>
     <color name="color_success">#4CAF50</color>
     <color name="color_warning">#FF9800</color>
+    <color name="color_dark">#121212</color>
+    <color name="color_mid_dark">#0C3264</color>
+    <color name="color_dark2">#1E1E1E</color>
+    <color name="color_primary">#3F51B5</color>
+    <color name="color_secondary">#FFEB3B</color>
+    <color name="color_light">#FFFFFF</color>
+    <color name="color_light_dim">#AAAAAA</color>
 </resources>
