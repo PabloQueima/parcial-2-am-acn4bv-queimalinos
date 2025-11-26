@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.parcial_1_am_acn4bv_queimalinos.models.Ejercicio;
 import com.example.parcial_1_am_acn4bv_queimalinos.models.Sesion;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout contenedorSesiones = findViewById(R.id.contenedorSesiones);
         List<Sesion> sesiones = generarSesionesMock();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) {
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                return;
+            }
 
         for (Sesion sesion : sesiones) {
             ejerciciosPorSesion.put(sesion.getTitulo(), sesion.getEjercicios());
