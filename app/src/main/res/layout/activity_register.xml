@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    tools:context=".RegisterActivity">
+    android:padding="@dimen/padding_general"
+    android:background="@color/color_dark">
 
     <EditText
         android:id="@+id/emailInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email" />
+        android:hint="@string/hint_email"
+        android:textColor="@color/color_light"
+        android:textColorHint="@color/color_light_dim"
+        android:background="@drawable/input_background"
+        android:padding="12dp"/>
 
     <EditText
         android:id="@+id/passInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contraseña"
-        android:inputType="textPassword" />
+        android:hint="@string/hint_password_reg"
+        android:textColor="@color/color_light"
+        android:textColorHint="@color/color_light_dim"
+        android:background="@drawable/input_background"
+        android:padding="12dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crear cuenta" />
+        android:text="@string/btn_create_account"
+        android:textColor="@color/color_light"
+        android:backgroundTint="@color/color_primary"
+        android:layout_marginTop="24dp"/>
 
 </LinearLayout>

@@ -4,27 +4,24 @@
     android:layout_height="match_parent"
     android:background="@color/color_primary">
 
-    <!-- LOGO -->
     <ImageView
         android:id="@+id/logoView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/logo_splash"
+        android:layout_height="@dimen/logo_splash"
         android:src="@drawable/logo"
-        android:contentDescription="logo"
+        android:contentDescription="Logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"/>
 
-    <!-- TEXTO DE PLATAFORMA -->
     <TextView
         android:id="@+id/txtTituloSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Plataforma de Entrenamiento"
+        android:text="@string/texto_plataforma"
         android:textColor="@color/color_light"
-        android:textSize="24sp"
+        android:textSize="@dimen/texto_subtitulo"
         android:textStyle="bold"
-        android:layout_below="@+id/logoView"
+        android:layout_below="@id/logoView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 

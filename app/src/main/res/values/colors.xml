@@ -7,7 +7,7 @@
     <color name="color_mid_dark">#0C3264</color>
     <color name="color_dark2">#1E1E1E</color>
     <color name="color_primary">#3F51B5</color>
-    <color name="color_secondary">#FFEB3B</color>
+    <color name="color_secondary">#FF7F00</color>
     <color name="color_light">#FFFFFF</color>
     <color name="color_light_dim">#AAAAAA</color>
 </resources>

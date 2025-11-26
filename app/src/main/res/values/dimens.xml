@@ -1,14 +1,13 @@
 <resources>
-    <!-- Margenes y paddings -->
     <dimen name="padding_general">16dp</dimen>
     <dimen name="margen_tarjeta">8dp</dimen>
     <dimen name="margen_sesion">24dp</dimen>
 
-    <!-- Tamaños de texto -->
-    <dimen name="texto_titulo">20sp</dimen>
-    <dimen name="texto_subtitulo">18sp</dimen>
+    <dimen name="texto_titulo">28sp</dimen>
+    <dimen name="texto_subtitulo">20sp</dimen>
     <dimen name="texto_general">14sp</dimen>
 
-    <!-- Tamaños de imagen -->
     <dimen name="imagen_ejercicio">150dp</dimen>
+    <dimen name="logo_login">140dp</dimen>
+    <dimen name="logo_splash">200dp</dimen>
 </resources>

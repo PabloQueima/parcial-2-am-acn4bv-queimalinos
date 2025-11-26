@@ -2,5 +2,7 @@
 <resources>
     <style name="Theme.Parcial2.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/color_dark</item>
+        <item name="android:navigationBarColor">@color/color_dark</item>
     </style>
 </resources>

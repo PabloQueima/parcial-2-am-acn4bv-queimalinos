@@ -4,8 +4,19 @@
 
     <!-- Textos generales -->
     <string name="texto_bienvenida">Plataforma de Entrenamiento</string>
+    <string name="texto_plataforma">Plataforma de Entrenamiento</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_register">Registrarme</string>
+    <string name="btn_create_account">Crear cuenta</string>
+    <string name="btn_logout">Cerrar sesión</string>
+
+    <!-- Inputs -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_password_reg">Contraseña</string>
     <string name="boton_ver_ejercicios">Ver ejercicios</string>
     <string name="boton_ocultar_ejercicios">Ocultar ejercicios</string>
+
 
     <!-- Sesiones -->
     <string name="sesion_piernas">Sesión 1: Piernas</string>
@@ -34,3 +45,4 @@
     <string name="desc_abdominales">Ejercicio clásico de fortalecimiento abdominal.</string>
     <string name="desc_mountain">Activa abdomen y mejora resistencia cardiovascular.</string>
 </resources>
+
