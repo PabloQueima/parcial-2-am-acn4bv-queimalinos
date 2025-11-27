@@ -1,11 +1,13 @@
 package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,8 +40,12 @@ public class LoginActivity extends AppCompatActivity {
 
         auth.signInWithEmailAndPassword(email, pass)
                 .addOnSuccessListener(r -> {
+                    // Guardar sesión local
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    prefs.edit().putString("usuarioEmail", email).apply();
+
+                    // Ir a MainActivity
                     Intent i = new Intent(this, MainActivity.class);
-                    i.putExtra("usuarioEmail", email);
                     startActivity(i);
                     finish();
                 })

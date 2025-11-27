@@ -1,6 +1,7 @@
 package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -25,29 +26,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Protección de sesión
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
+        // Recuperar sesión guardada en SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        String email = prefs.getString("usuarioEmail", null);
+
+        // Si no hay sesión, ir a Login
+        if (email == null) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
         }
 
-        // Bienvenida
-        String email = getIntent().getStringExtra("usuarioEmail");
+        // Mostrar email en bienvenida
         TextView bienvenida = findViewById(R.id.txtBienvenida);
-        if (email != null) {
-            bienvenida.setText("Bienvenido " + email);
-        }
+        bienvenida.setText("Bienvenido " + email);
 
         // Logout
         Button logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(v -> {
+            // Cerrar sesión Firebase
             FirebaseAuth.getInstance().signOut();
+
+            // Borrar sesión local
+            SharedPreferences.Editor editor = getSharedPreferences("prefs", MODE_PRIVATE).edit();
+            editor.remove("usuarioEmail");
+            editor.apply();
+
+            // Volver a Login
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
+        // Inicializar sesiones y ejercicios
         LinearLayout contenedorSesiones = findViewById(R.id.contenedorSesiones);
         List<Sesion> sesiones = generarSesionesMock();
 
@@ -180,6 +190,16 @@ public class MainActivity extends AppCompatActivity {
             else ejerciciosCompletados.remove(e.getNombre());
             actualizarEstiloEjercicio(tarjeta, nombre, e.getNombre());
             actualizarProgresoSesion(sesionTitulo);
+        });
+
+        // Abrir DetalleEjercicioActivity al tocar la tarjeta
+        tarjeta.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, DetalleEjercicioActivity.class);
+            intent.putExtra("nombre", e.getNombre());
+            intent.putExtra("descripcion", e.getDescripcion());
+            String imageId = e.getNombre().toLowerCase().replace(" ", "_");
+            intent.putExtra("imageId", imageId);
+            startActivity(intent);
         });
 
         return tarjeta;
