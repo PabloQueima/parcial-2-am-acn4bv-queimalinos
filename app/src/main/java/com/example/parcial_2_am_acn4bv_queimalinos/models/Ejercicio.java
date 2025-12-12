@@ -1,37 +1,56 @@
 package com.example.parcial_2_am_acn4bv_queimalinos.models;
 
 public class Ejercicio {
-    private String nombre;
-    private int series;
-    private int repeticiones;
+
+    private String idDocumento;
+    private String createdAt;
     private String descripcion;
-    private int imagenResId;
+    private String elemento;
+    private int id;
+    private String nombre;
+    private String parteCuerpo;
+    private String imageUrl;
 
-    public Ejercicio(String nombre, int series, int repeticiones, String descripcion, int imagenResId) {
-        this.nombre = nombre;
-        this.series = series;
-        this.repeticiones = repeticiones;
-        this.descripcion = descripcion;
-        this.imagenResId = imagenResId;
+    public Ejercicio() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getIdDocumento() {
+        return idDocumento;
     }
 
-    public int getSeries() {
-        return series;
+    public void setIdDocumento(String idDocumento) {
+        this.idDocumento = idDocumento;
     }
 
-    public int getRepeticiones() {
-        return repeticiones;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public int getImagenResId() {
-        return imagenResId;
+    public String getElemento() {
+        return elemento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getParteCuerpo() {
+        return parteCuerpo;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

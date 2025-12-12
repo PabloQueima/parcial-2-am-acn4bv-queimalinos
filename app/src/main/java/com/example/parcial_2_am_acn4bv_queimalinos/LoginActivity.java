@@ -7,7 +7,6 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,19 +37,22 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String pass = passInput.getText().toString().trim();
 
+        if (email.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(this, "Completar email y contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         auth.signInWithEmailAndPassword(email, pass)
                 .addOnSuccessListener(r -> {
-                    // Guardar sesión local
                     SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
                     prefs.edit().putString("usuarioEmail", email).apply();
 
-                    // Ir a MainActivity
                     Intent i = new Intent(this, MainActivity.class);
                     startActivity(i);
                     finish();
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
     }
 }
