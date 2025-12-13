@@ -2,11 +2,13 @@ package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -45,34 +47,24 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         auth.createUserWithEmailAndPassword(email, pass)
-                .addOnSuccessListener(r -> {
-                    FirebaseUser user = auth.getCurrentUser();
-                    if (user == null) {
-                        Toast.makeText(this, "Error inesperado.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    // Datos a guardar en Firestore
+                .addOnSuccessListener(result -> {
                     Map<String, Object> datos = new HashMap<>();
                     datos.put("email", email);
                     datos.put("rol", "cliente");
-                    datos.put("sesionesAsignadas", new java.util.ArrayList<>());
                     datos.put("createdAt", System.currentTimeMillis());
 
                     db.collection("usuarios")
-                            .document(user.getUid())
-                            .set(datos)
-                            .addOnSuccessListener(unused -> {
-                                Intent i = new Intent(this, MainActivity.class);
-                                startActivity(i);
+                            .add(datos)
+                            .addOnSuccessListener(ref -> {
+                                startActivity(new Intent(this, MainActivity.class));
                                 finish();
                             })
                             .addOnFailureListener(e ->
-                                    Toast.makeText(this, "Error guardando usuario: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
                             );
                 })
                 .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
                 );
     }
 }

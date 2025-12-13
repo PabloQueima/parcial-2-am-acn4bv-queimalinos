@@ -26,24 +26,48 @@ public class Ejercicio {
         return createdAt;
     }
 
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getElemento() {
         return elemento;
     }
 
+    public void setElemento(String elemento) {
+        this.elemento = elemento;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getParteCuerpo() {
         return parteCuerpo;
+    }
+
+    public void setParteCuerpo(String parteCuerpo) {
+        this.parteCuerpo = parteCuerpo;
     }
 
     public String getImageUrl() {

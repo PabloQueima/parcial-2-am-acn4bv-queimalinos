@@ -1,18 +1,23 @@
 package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailInput, passInput;
     private Button loginBtn, goRegisterBtn;
+
     private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         emailInput = findViewById(R.id.emailInput);
         passInput = findViewById(R.id.passInput);
@@ -27,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         goRegisterBtn = findViewById(R.id.goRegisterBtn);
 
         loginBtn.setOnClickListener(v -> login());
-
         goRegisterBtn.setOnClickListener(v ->
                 startActivity(new Intent(this, RegisterActivity.class))
         );
@@ -43,16 +48,37 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         auth.signInWithEmailAndPassword(email, pass)
-                .addOnSuccessListener(r -> {
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    prefs.edit().putString("usuarioEmail", email).apply();
+                .addOnSuccessListener(result ->
+                        db.collection("usuarios")
+                                .whereEqualTo("email", email)
+                                .limit(1)
+                                .get()
+                                .addOnSuccessListener(query -> {
+                                    if (query.isEmpty()) {
+                                        Toast.makeText(this, "Usuario no encontrado en base de datos", Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
 
-                    Intent i = new Intent(this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                })
+                                    String rol = query.getDocuments().get(0).getString("rol");
+
+                                    Intent intent;
+                                    if ("admin".equals(rol)) {
+                                        intent = new Intent(this, AdminMainActivity.class);
+                                    } else if ("entrenador".equals(rol)) {
+                                        intent = new Intent(this, EntrenadorMainActivity.class);
+                                    } else {
+                                        intent = new Intent(this, MainActivity.class);
+                                    }
+
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
+                                )
+                )
                 .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
                 );
     }
 }

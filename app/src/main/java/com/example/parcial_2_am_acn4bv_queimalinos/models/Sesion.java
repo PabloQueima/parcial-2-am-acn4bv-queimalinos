@@ -28,28 +28,56 @@ public class Sesion {
         return clienteId;
     }
 
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
+    }
+
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<EjercicioRef> getEjercicios() {
         return ejercicios;
     }
 
+    public void setEjercicios(List<EjercicioRef> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+
     public int getEntrenadorId() {
         return entrenadorId;
+    }
+
+    public void setEntrenadorId(int entrenadorId) {
+        this.entrenadorId = entrenadorId;
     }
 
     public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public static class EjercicioRef {
@@ -64,12 +92,24 @@ public class Sesion {
             return id;
         }
 
+        public void setId(int id) {
+            this.id = id;
+        }
+
         public int getSeries() {
             return series;
         }
 
+        public void setSeries(int series) {
+            this.series = series;
+        }
+
         public int getReps() {
             return reps;
+        }
+
+        public void setReps(int reps) {
+            this.reps = reps;
         }
     }
 }
