@@ -1,10 +1,12 @@
 package com.example.parcial_2_am_acn4bv_queimalinos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DetalleEjercicioActivity extends AppCompatActivity {
 
@@ -12,6 +14,12 @@ public class DetalleEjercicioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_ejercicio);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
 
         TextView titulo = findViewById(R.id.txtTituloEjercicio);
         TextView descripcion = findViewById(R.id.txtDescripcionEjercicio);
@@ -26,7 +34,6 @@ public class DetalleEjercicioActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(imageUrl)
-                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(imagen);

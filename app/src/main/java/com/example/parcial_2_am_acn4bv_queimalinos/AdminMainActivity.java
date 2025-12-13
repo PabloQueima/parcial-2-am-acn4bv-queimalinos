@@ -31,9 +31,6 @@ public class AdminMainActivity extends AppCompatActivity {
             return;
         }
 
-        TextView titulo = findViewById(R.id.txtTitulo);
-        titulo.setText("Panel Administrador");
-
         Button logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(v -> {
             auth.signOut();
@@ -49,17 +46,20 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     private void cargarTotales() {
-        db.collection("usuarios").get()
+        db.collection("usuarios")
+                .get()
                 .addOnSuccessListener(q ->
                         txtUsuarios.setText("Usuarios: " + q.size())
                 );
 
-        db.collection("sesiones").get()
+        db.collection("sesiones")
+                .get()
                 .addOnSuccessListener(q ->
                         txtSesiones.setText("Sesiones: " + q.size())
                 );
 
-        db.collection("ejercicios").get()
+        db.collection("ejercicios")
+                .get()
                 .addOnSuccessListener(q ->
                         txtEjercicios.setText("Ejercicios: " + q.size())
                 );

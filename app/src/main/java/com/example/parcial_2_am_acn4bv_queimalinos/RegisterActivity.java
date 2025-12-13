@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText emailInput, passInput, nombreInput;
+    private EditText nombreInput, emailInput, passInput;
     private Button registerBtn;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -26,20 +26,20 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        nombreInput = findViewById(R.id.nombreInput);
         emailInput = findViewById(R.id.emailInput);
         passInput = findViewById(R.id.passInput);
-        nombreInput = findViewById(R.id.nombreInput);
         registerBtn = findViewById(R.id.registerBtn);
 
         registerBtn.setOnClickListener(v -> register());
     }
 
     private void register() {
+        String nombre = nombreInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String pass = passInput.getText().toString().trim();
-        String nombre = nombreInput.getText().toString().trim();
 
-        if (email.isEmpty() || pass.isEmpty() || nombre.isEmpty()) {
+        if (nombre.isEmpty() || email.isEmpty() || pass.isEmpty()) {
             Toast.makeText(this, "Completar todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -53,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
                     datos.put("nombre", nombre);
                     datos.put("rol", "cliente");
                     datos.put("createdAt", System.currentTimeMillis());
-                    datos.put("id", null);
 
                     db.collection("usuarios")
                             .document(uid)

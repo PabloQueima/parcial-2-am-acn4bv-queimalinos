@@ -25,7 +25,8 @@
         android:textColor="@color/color_light"
         android:textColorHint="@color/color_light_dim"
         android:background="@drawable/input_background"
-        android:padding="12dp"/>
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/passInput"
@@ -36,8 +37,7 @@
         android:textColorHint="@color/color_light_dim"
         android:background="@drawable/input_background"
         android:padding="12dp"
-        android:inputType="textPassword"
-        android:layout_marginTop="16dp"/>
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/registerBtn"

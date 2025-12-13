@@ -31,9 +31,6 @@ public class EntrenadorMainActivity extends AppCompatActivity {
             return;
         }
 
-        TextView titulo = findViewById(R.id.txtTitulo);
-        titulo.setText("Panel Entrenador");
-
         Button logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(v -> {
             auth.signOut();
@@ -45,21 +42,13 @@ public class EntrenadorMainActivity extends AppCompatActivity {
 
         String uid = auth.getCurrentUser().getUid();
 
-        db.collection("usuarios")
-                .document(uid)
+        db.collection("sesiones")
+                .whereEqualTo("entrenadorUid", uid)
                 .get()
-                .addOnSuccessListener(doc -> {
-                    Long entrenadorId = doc.getLong("id");
-                    if (entrenadorId == null) return;
-
-                    db.collection("sesiones")
-                            .whereEqualTo("entrenadorId", entrenadorId.intValue())
-                            .get()
-                            .addOnSuccessListener(sesiones -> {
-                                for (DocumentSnapshot s : sesiones) {
-                                    mostrarSesion(s);
-                                }
-                            });
+                .addOnSuccessListener(sesiones -> {
+                    for (DocumentSnapshot s : sesiones) {
+                        mostrarSesion(s);
+                    }
                 });
     }
 
@@ -75,7 +64,7 @@ public class EntrenadorMainActivity extends AppCompatActivity {
         card.addView(titulo);
 
         TextView cliente = new TextView(this);
-        cliente.setText("Cliente ID: " + sesion.getLong("clienteId"));
+        cliente.setText("Cliente UID: " + sesion.getString("clienteUid"));
         card.addView(cliente);
 
         contenedorSesiones.addView(card);

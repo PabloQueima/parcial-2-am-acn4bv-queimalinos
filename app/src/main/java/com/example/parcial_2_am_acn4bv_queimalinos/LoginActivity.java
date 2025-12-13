@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                             .get()
                             .addOnSuccessListener(doc -> {
                                 if (!doc.exists()) {
+                                    auth.signOut();
                                     Toast.makeText(this, "Usuario sin perfil", Toast.LENGTH_LONG).show();
                                     return;
                                 }

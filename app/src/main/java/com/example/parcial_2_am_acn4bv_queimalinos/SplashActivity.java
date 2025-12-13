@@ -26,23 +26,24 @@ public class SplashActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(doc -> {
                     if (!doc.exists()) {
+                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(this, LoginActivity.class));
                         finish();
                         return;
                     }
 
                     String rol = doc.getString("rol");
-                    Intent i;
+                    Intent intent;
 
                     if ("admin".equals(rol)) {
-                        i = new Intent(this, AdminMainActivity.class);
+                        intent = new Intent(this, AdminMainActivity.class);
                     } else if ("entrenador".equals(rol)) {
-                        i = new Intent(this, EntrenadorMainActivity.class);
+                        intent = new Intent(this, EntrenadorMainActivity.class);
                     } else {
-                        i = new Intent(this, MainActivity.class);
+                        intent = new Intent(this, MainActivity.class);
                     }
 
-                    startActivity(i);
+                    startActivity(intent);
                     finish();
                 });
     }

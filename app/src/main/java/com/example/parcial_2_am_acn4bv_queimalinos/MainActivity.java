@@ -54,21 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
         String uid = auth.getCurrentUser().getUid();
 
-        db.collection("usuarios")
-                .document(uid)
+        db.collection("sesiones")
+                .whereEqualTo("clienteUid", uid)
                 .get()
-                .addOnSuccessListener(user -> {
-                    Long clienteId = user.getLong("id");
-                    if (clienteId == null) return;
-
-                    db.collection("sesiones")
-                            .whereEqualTo("clienteId", clienteId.intValue())
-                            .get()
-                            .addOnSuccessListener(sesiones -> {
-                                for (DocumentSnapshot s : sesiones) {
-                                    crearSesion(s);
-                                }
-                            });
+                .addOnSuccessListener(sesiones -> {
+                    for (DocumentSnapshot s : sesiones) {
+                        crearSesion(s);
+                    }
                 });
     }
 
@@ -100,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
         lista.setVisibility(View.GONE);
 
         for (Map<String, Object> e : ejercicios) {
-            int id = ((Number) e.get("id")).intValue();
+            String ejercicioUid = (String) e.get("ejercicioUid");
             int series = ((Number) e.get("series")).intValue();
             int reps = ((Number) e.get("reps")).intValue();
-            crearEjercicio(titulo, id, series, reps, lista);
+            crearEjercicio(titulo, ejercicioUid, series, reps, lista);
         }
 
         Button toggleBtn = new Button(this);
@@ -125,14 +117,12 @@ public class MainActivity extends AppCompatActivity {
         contenedorSesiones.addView(sesionLayout);
     }
 
-    private void crearEjercicio(String sesionTitulo, int ejercicioId, int series, int reps, LinearLayout lista) {
+    private void crearEjercicio(String sesionTitulo, String ejercicioUid, int series, int reps, LinearLayout lista) {
         db.collection("ejercicios")
-                .whereEqualTo("id", ejercicioId)
-                .limit(1)
+                .document(ejercicioUid)
                 .get()
-                .addOnSuccessListener(q -> {
-                    if (q.isEmpty()) return;
-                    DocumentSnapshot e = q.getDocuments().get(0);
+                .addOnSuccessListener(e -> {
+                    if (!e.exists()) return;
 
                     String nombre = e.getString("nombre");
                     String descripcion = e.getString("descripcion");
@@ -153,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     CheckBox check = new CheckBox(this);
                     card.addView(check);
 
-                    String key = sesionTitulo + "|" + ejercicioId;
+                    String key = sesionTitulo + "|" + ejercicioUid;
                     check.setChecked(prefs.getBoolean(key, false));
 
                     if (check.isChecked()) completados.add(key);
