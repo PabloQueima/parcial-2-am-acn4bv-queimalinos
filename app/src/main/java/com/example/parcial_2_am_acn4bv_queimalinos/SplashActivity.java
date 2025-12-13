@@ -3,7 +3,6 @@ package com.example.parcial_2_am_acn4bv_queimalinos;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -19,21 +18,20 @@ public class SplashActivity extends AppCompatActivity {
             return;
         }
 
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         FirebaseFirestore.getInstance()
                 .collection("usuarios")
-                .whereEqualTo("email", email)
-                .limit(1)
+                .document(uid)
                 .get()
-                .addOnSuccessListener(q -> {
-                    if (q.isEmpty()) {
+                .addOnSuccessListener(doc -> {
+                    if (!doc.exists()) {
                         startActivity(new Intent(this, LoginActivity.class));
                         finish();
                         return;
                     }
 
-                    String rol = q.getDocuments().get(0).getString("rol");
+                    String rol = doc.getString("rol");
                     Intent i;
 
                     if ("admin".equals(rol)) {

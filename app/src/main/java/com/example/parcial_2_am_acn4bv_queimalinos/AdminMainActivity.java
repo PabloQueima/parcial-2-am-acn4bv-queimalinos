@@ -2,10 +2,9 @@ package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -14,7 +13,9 @@ public class AdminMainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
-    private TextView txtUsuarios, txtSesiones, txtEjercicios;
+    private TextView txtUsuarios;
+    private TextView txtSesiones;
+    private TextView txtEjercicios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +50,18 @@ public class AdminMainActivity extends AppCompatActivity {
 
     private void cargarTotales() {
         db.collection("usuarios").get()
-                .addOnSuccessListener(q -> txtUsuarios.setText("Usuarios: " + q.size()));
+                .addOnSuccessListener(q ->
+                        txtUsuarios.setText("Usuarios: " + q.size())
+                );
 
         db.collection("sesiones").get()
-                .addOnSuccessListener(q -> txtSesiones.setText("Sesiones: " + q.size()));
+                .addOnSuccessListener(q ->
+                        txtSesiones.setText("Sesiones: " + q.size())
+                );
 
         db.collection("ejercicios").get()
-                .addOnSuccessListener(q -> txtEjercicios.setText("Ejercicios: " + q.size()));
+                .addOnSuccessListener(q ->
+                        txtEjercicios.setText("Ejercicios: " + q.size())
+                );
     }
 }

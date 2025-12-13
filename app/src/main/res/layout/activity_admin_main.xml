@@ -15,7 +15,6 @@
             android:id="@+id/txtTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Panel Administrador"
             android:textSize="@dimen/texto_titulo"
             android:textStyle="bold"
             android:textColor="@color/color_dark"
@@ -27,14 +26,12 @@
             android:orientation="vertical"
             android:background="@color/color_light"
             android:padding="24dp"
-            android:elevation="6dp"
             android:layout_marginBottom="24dp">
 
             <TextView
                 android:id="@+id/txtUsuarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuarios: 0"
                 android:textSize="@dimen/texto_general"
                 android:textColor="@color/color_dark"
                 android:layout_marginBottom="12dp" />
@@ -43,7 +40,6 @@
                 android:id="@+id/txtSesiones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sesiones: 0"
                 android:textSize="@dimen/texto_general"
                 android:textColor="@color/color_dark"
                 android:layout_marginBottom="12dp" />
@@ -52,7 +48,6 @@
                 android:id="@+id/txtEjercicios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ejercicios: 0"
                 android:textSize="@dimen/texto_general"
                 android:textColor="@color/color_dark" />
         </LinearLayout>

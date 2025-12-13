@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -15,7 +13,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailInput, passInput;
     private Button loginBtn, goRegisterBtn;
-
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
@@ -48,35 +45,33 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         auth.signInWithEmailAndPassword(email, pass)
-                .addOnSuccessListener(result ->
-                        db.collection("usuarios")
-                                .whereEqualTo("email", email)
-                                .limit(1)
-                                .get()
-                                .addOnSuccessListener(query -> {
-                                    if (query.isEmpty()) {
-                                        Toast.makeText(this, "Usuario no encontrado en base de datos", Toast.LENGTH_LONG).show();
-                                        return;
-                                    }
+                .addOnSuccessListener(result -> {
+                    String uid = result.getUser().getUid();
 
-                                    String rol = query.getDocuments().get(0).getString("rol");
+                    db.collection("usuarios")
+                            .document(uid)
+                            .get()
+                            .addOnSuccessListener(doc -> {
+                                if (!doc.exists()) {
+                                    Toast.makeText(this, "Usuario sin perfil", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
 
-                                    Intent intent;
-                                    if ("admin".equals(rol)) {
-                                        intent = new Intent(this, AdminMainActivity.class);
-                                    } else if ("entrenador".equals(rol)) {
-                                        intent = new Intent(this, EntrenadorMainActivity.class);
-                                    } else {
-                                        intent = new Intent(this, MainActivity.class);
-                                    }
+                                String rol = doc.getString("rol");
+                                Intent intent;
 
-                                    startActivity(intent);
-                                    finish();
-                                })
-                                .addOnFailureListener(e ->
-                                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
-                                )
-                )
+                                if ("admin".equals(rol)) {
+                                    intent = new Intent(this, AdminMainActivity.class);
+                                } else if ("entrenador".equals(rol)) {
+                                    intent = new Intent(this, EntrenadorMainActivity.class);
+                                } else {
+                                    intent = new Intent(this, MainActivity.class);
+                                }
+
+                                startActivity(intent);
+                                finish();
+                            });
+                })
                 .addOnFailureListener(e ->
                         Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
                 );

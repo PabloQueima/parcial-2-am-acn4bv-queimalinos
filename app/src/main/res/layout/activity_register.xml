@@ -7,6 +7,17 @@
     android:background="@color/color_dark">
 
     <EditText
+        android:id="@+id/nombreInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:textColor="@color/color_light"
+        android:textColorHint="@color/color_light_dim"
+        android:background="@drawable/input_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
         android:id="@+id/emailInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -8,11 +8,9 @@ import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
-
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,13 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
         contenedorSesiones = findViewById(R.id.contenedorSesiones);
 
+        String uid = auth.getCurrentUser().getUid();
+
         db.collection("usuarios")
-                .whereEqualTo("email", auth.getCurrentUser().getEmail())
-                .limit(1)
+                .document(uid)
                 .get()
-                .addOnSuccessListener(q -> {
-                    if (q.isEmpty()) return;
-                    DocumentSnapshot user = q.getDocuments().get(0);
+                .addOnSuccessListener(user -> {
                     Long clienteId = user.getLong("id");
                     if (clienteId == null) return;
 
@@ -77,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void crearSesion(DocumentSnapshot sesion) {
         String titulo = sesion.getString("titulo");
-        List<Map<String, Object>> ejercicios = (List<Map<String, Object>>) sesion.get("ejercicios");
+        List<Map<String, Object>> ejercicios =
+                (List<Map<String, Object>>) sesion.get("ejercicios");
         if (ejercicios == null) ejercicios = new ArrayList<>();
 
         LinearLayout sesionLayout = new LinearLayout(this);
@@ -183,7 +181,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void actualizarProgreso(String sesionTitulo) {
         int total = totalEjPorSesion.get(sesionTitulo);
-        long hechos = completados.stream().filter(k -> k.startsWith(sesionTitulo + "|")).count();
+        long hechos = completados.stream()
+                .filter(k -> k.startsWith(sesionTitulo + "|"))
+                .count();
+
         progresoPorSesion.get(sesionTitulo)
                 .setText(hechos + " de " + total + " ejercicios completados");
 

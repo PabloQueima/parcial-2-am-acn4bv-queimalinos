@@ -2,11 +2,11 @@ package com.example.parcial_2_am_acn4bv_queimalinos;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -43,13 +43,13 @@ public class EntrenadorMainActivity extends AppCompatActivity {
 
         contenedorSesiones = findViewById(R.id.contenedorSesiones);
 
+        String uid = auth.getCurrentUser().getUid();
+
         db.collection("usuarios")
-                .whereEqualTo("email", auth.getCurrentUser().getEmail())
-                .limit(1)
+                .document(uid)
                 .get()
-                .addOnSuccessListener(q -> {
-                    if (q.isEmpty()) return;
-                    Long entrenadorId = q.getDocuments().get(0).getLong("id");
+                .addOnSuccessListener(doc -> {
+                    Long entrenadorId = doc.getLong("id");
                     if (entrenadorId == null) return;
 
                     db.collection("sesiones")
