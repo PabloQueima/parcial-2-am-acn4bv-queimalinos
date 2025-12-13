@@ -12,17 +12,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/txtBienvenida"
+            android:id="@+id/txtTituloEntrenador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/texto_bienvenida"
+            android:text="Panel del entrenador"
             android:textSize="@dimen/texto_subtitulo"
-            android:textColor="@color/color_dark2"
             android:textStyle="bold"
+            android:textColor="@color/color_dark2"
             android:layout_marginBottom="16dp" />
 
         <LinearLayout
-            android:id="@+id/contenedorSesiones"
+            android:id="@+id/contenedorClientes"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
