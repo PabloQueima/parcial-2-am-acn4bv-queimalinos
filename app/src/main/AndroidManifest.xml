@@ -36,6 +36,14 @@
             android:exported="false"/>
 
         <activity
+            android:name=".EntrenadorMainActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".AdminMainActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".DetalleEjercicioActivity"
             android:exported="false"/>
 
